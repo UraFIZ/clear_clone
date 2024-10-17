@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Redirect App</title>
+    <title>Auto-Redirect Test App</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,23 +13,33 @@
             height: 100vh;
             margin: 0;
         }
-        button {
+        #message {
             font-size: 18px;
-            padding: 10px 20px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <button id="verifyBtn">Verify</button>
+    <div id="message">
+        <p>Simulating verification process...</p>
+        <p>You will be redirected in <span id="countdown">5</span> seconds.</p>
+    </div>
 
     <script>
-        document.getElementById('verifyBtn').addEventListener('click', function() {
-            // Simulate a delay before redirect (e.g., 2 seconds)
-            setTimeout(function() {
+        // Countdown timer
+        let seconds = 5;
+        const countdownElement = document.getElementById('countdown');
+        
+        const countdownTimer = setInterval(function() {
+            seconds--;
+            countdownElement.textContent = seconds;
+            
+            if (seconds <= 0) {
+                clearInterval(countdownTimer);
                 // Replace with your actual app's deep link URL
-                window.location.href = 'https://ripple.thedacare.org';
-            }, 2000);
-        });
+                window.location.href = 'https://ripple.staging.icanbwell.com';
+            }
+        }, 1000);
     </script>
 </body>
 </html>
